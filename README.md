@@ -4,6 +4,10 @@
 ## Prerequisites
 
 - OpenShift Cluster where ConnectivityLink 1.5 or higher is available.
+- Install Both ConnectivityLink and ServiceMesh Operator
+
+<img width="1390" height="508" alt="Screenshot 2026-10-29 at 12 46 20 PM" src="https://github.com/user-attachments/assets/bb99d953-f4d3-49d1-942c-e1d01b2efea8" />
+
 
 - Deploy small application: https://github.com/osa-ora/java-ocp-demo
 
