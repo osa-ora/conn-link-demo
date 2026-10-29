@@ -9,14 +9,25 @@
 
 ```bash
 oc new-project conn-link
+oc new-app java:openjdk-17-ubi8~https://github.com/osa-ora/java-ocp-demo \
+  --name=java-ocp-demo \
+  -n conn-link
+
+oc expose svc/java-ocp-demo -n conn-link
 
 ```
 
 This application will expose 2 end points: 
 
 ```
-/loyalty/v1/balance/1000
-/loyalty/v1/transaction/1000
+export APP_URL=$(oc get route java-ocp-demo -n conn-link -o jsonpath='{.spec.host}')
+
+# Test Balance endpoint
+curl "http://${APP_URL}/loyalty/v1/balance/1000"
+
+# Test Transaction endpoint
+curl "http://${APP_URL}/loyalty/v1/transaction/1000"
+
 ```
 
 <img width="292" height="336" alt="Screenshot 2026-10-29 at 12 20 32 PM" src="https://github.com/user-attachments/assets/0a7cad30-ebed-458b-874d-df39e8ba8b6a" />
@@ -25,6 +36,7 @@ After you deploy the application and test the route, delete that route.
 
 ```
 oc delete route java-ocp-demo -n conn-link
+
 ```
 
 ## 1. Infrastructure Setup
