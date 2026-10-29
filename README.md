@@ -13,6 +13,9 @@ oc new-app java:openjdk-17-ubi8~https://github.com/osa-ora/java-ocp-demo \
   --name=java-ocp-demo \
   -n conn-link
 
+oc logs -f bc/java-ocp-demo -n conn-link
+oc rollout status deployment/java-ocp-demo -n conn-link
+
 oc expose svc/java-ocp-demo -n conn-link
 
 ```
@@ -434,6 +437,14 @@ Overview:
 <img width="1705" height="835" alt="Screenshot 2026-10-29 at 12 27 43 PM" src="https://github.com/user-attachments/assets/4d135614-79e7-4433-b866-813496cc68f0" />
 
 
+## 7. Clean Everything
 
+
+```bash
+
+oc delete project conn-link --wait=true
+oc delete project istio-system --wait=true
+
+```
 ---
 
