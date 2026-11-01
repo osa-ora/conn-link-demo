@@ -1,0 +1,30 @@
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+  name: deny-all-authpolicy
+  namespace: conn-link
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: my-gateway
+  rules:
+    authorization:
+      denyAll:
+        metrics: false
+        opa:
+          allValues: false
+          rego: allow = false
+          version: v0
+        priority: 0
+    response:
+      unauthorized:
+        body:
+          value: |-
+            {
+              "error": "Forbidden",
+              "message": "Access denied by default. Create a specific auth policy for the route."
+            }
+        headers:
+          content-type:
+            value: application/json
