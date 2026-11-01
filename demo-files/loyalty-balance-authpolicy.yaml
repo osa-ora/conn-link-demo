@@ -1,0 +1,23 @@
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+  name: loyalty-api-auth
+  namespace: conn-link
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-loyalty-balance-api
+  rules:
+    authentication:
+      api-key-users:
+        apiKey:
+          allNamespaces: false
+          selector:
+            matchLabels:
+              api-access: loyalty
+        credentials:
+          queryString:
+            name: api_key
+        metrics: false
+        priority: 0
