@@ -1,0 +1,16 @@
+apiVersion: extensions.kuadrant.io/v1alpha1
+kind: PlanPolicy
+metadata:
+  name: loyalty-api-plans
+  namespace: conn-link
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-loyalty-balance-api
+  plans:
+    - tier: Gold
+      predicate: "has(auth.identity) && auth.identity.metadata.annotations['secret.kuadrant.io/plan-id'] == 'Gold'"
+      limits:
+        daily: 100
+        weekly: 1000
