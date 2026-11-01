@@ -1,0 +1,24 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: my-loyalty-balance-api
+  namespace: conn-link
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: my-gateway
+      port: 80
+      sectionName: api-listener
+  rules:
+    - matches:
+        - method: GET
+          path:
+            type: PathPrefix
+            value: /loyalty/v1/balance
+      backendRefs:
+        - group: ''
+          kind: Service
+          name: java-ocp-demo
+          port: 8080
+          weight: 1
