@@ -1,0 +1,16 @@
+apiVersion: devportal.kuadrant.io/v1alpha1
+kind: APIProduct
+metadata:
+  name: balance-api-3654
+  namespace: conn-link
+spec:
+  displayName: Balance_API
+  description: Get the balance
+  tags:
+    - v1
+  publishStatus: Published
+  approvalMode: manual
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-loyalty-balance-api
