@@ -522,3 +522,18 @@ oc delete project istio-system --wait=true
 ```
 ---
 
+Note: if you need additional capabilities such as designing and managing your APIs, you can use API controller which enables you to manage the lifecycle of schemas and API definitions. You can design artifacts using Apicurio Studio and manage those artifacts using Apicurio Registry.
+
+This can be enabled using the operator:
+
+<img width="1713" height="839" alt="Screenshot 2026-11-01 at 11 53 31 AM" src="https://github.com/user-attachments/assets/ee3ff5b6-d5de-40ac-b2b9-bfb5d4606912" />
+
+Follow the following link for the complete installation steps:
+
+https://docs.redhat.com/en/documentation/red_hat_connectivity_link/1.0/html-single/getting_started_with_api_controller/index#api-controller-overview
+
+
+
+
+
+
