@@ -1,0 +1,9 @@
+apiVersion: sailoperator.io/v1alpha1
+kind: Istio
+metadata:
+  name: default
+  namespace: istio-system
+spec:
+  # The specific version of Istio deployed by the Sail Operator
+  version: v1.22.1 
+  namespace: istio-system
