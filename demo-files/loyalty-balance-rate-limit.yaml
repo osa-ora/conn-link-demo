@@ -1,0 +1,15 @@
+apiVersion: kuadrant.io/v1
+kind: RateLimitPolicy
+metadata:
+  name: loyalty-balance-rate-limit
+  namespace: conn-link
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-loyalty-balance-api
+  limits:
+    my-rate:
+      rates:
+        - limit: 10
+          window: 30s
