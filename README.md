@@ -4,7 +4,7 @@
 ## Prerequisites
 
 - OpenShift Cluster where ConnectivityLink 1.5 or higher is available [ you can use the demo: OpenShift Container Platform Cluster 5 (Multi-Cloud) ]
-- Install Both ConnectivityLink and ServiceMesh Operator
+- Install Both ConnectivityLink (version 1.5+) and ServiceMesh Operator (version 3.4+)
 
 <img width="1390" height="508" alt="Screenshot 2026-10-29 at 12 46 20 PM" src="https://github.com/user-attachments/assets/bb99d953-f4d3-49d1-942c-e1d01b2efea8" />
 
