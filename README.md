@@ -499,7 +499,8 @@ Results:
 
 <img width="1506" height="358" alt="Screenshot 2026-10-29 at 1 17 33 PM" src="https://github.com/user-attachments/assets/a67f0ab5-c266-4634-b500-e58ab7e4155f" />
 
-**Let's Make Transaction APIs Public**
+
+**Let's Make Transaction API Public**
 
 To do this we need to create a policy for that:
 
