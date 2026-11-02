@@ -1,0 +1,16 @@
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+  name: loyalty-transaction-public-auth
+  namespace: conn-link
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-loyalty-transaction-api
+  rules:
+    authorization:
+      allow-public:
+        opa:
+          rego: allow = true
+        priority: 0
