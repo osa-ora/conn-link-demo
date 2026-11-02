@@ -479,7 +479,7 @@ Copy the key to use it:
 <img width="1419" height="354" alt="Screenshot 2026-10-29 at 12 24 54 PM" src="https://github.com/user-attachments/assets/b0234688-79fa-4a7b-a0ca-864cf715f1f3" />
 
 
-**Final Verification Tests**
+**Verification Tests**
 
 ** Note: Replace super-secret-key-123 with the actual key they copied from the UI if you used the console not the secret approach.
 
@@ -499,10 +499,45 @@ Results:
 
 <img width="1506" height="358" alt="Screenshot 2026-10-29 at 1 17 33 PM" src="https://github.com/user-attachments/assets/a67f0ab5-c266-4634-b500-e58ab7e4155f" />
 
+**Let's Make Transaction APIs Public**
+
+To do this we need to create a policy for that:
+
+```yaml
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+  name: loyalty-transaction-public-auth
+  namespace: conn-link
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-loyalty-transaction-api
+  rules:
+    authorization:
+      allow-public:
+        opa:
+          rego: allow = true
+        priority: 0
+```
+
+**Final Verification Tests**
+
+```bash
+# Balance API with valid key (Should Succeed)
+curl "http://${GATEWAY_URL}/loyalty/v1/balance/1000?api_key=super-secret-key-123"
+
+# Transaction API without key (Should work, as no auth is needed).
+curl "http://${GATEWAY_URL}/loyalty/v1/transaction/1000"
+
+```
+
+<img width="1506" height="137" alt="Screenshot 2026-11-02 at 11 12 04 AM" src="https://github.com/user-attachments/assets/353a420c-92ee-425e-9e85-009c345bcefd" />
+
 ## Demo Topology View:
 
-<img width="1309" height="623" alt="Screenshot 2026-10-29 at 12 27 07 PM" src="https://github.com/user-attachments/assets/2b55c09d-c4e7-412a-a4c5-7dd5c9a7aab8" />
-
+<img width="1282" height="595" alt="Screenshot 2026-11-02 at 11 13 56 AM" src="https://github.com/user-attachments/assets/54c8d7d5-ad8e-42b0-b0cc-f89eba25fce6" />
 
 
 ## Demo Overview:
